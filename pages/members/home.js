@@ -37,7 +37,7 @@ export default function Home(props){
     const dispatch = useAppDispatch()
     const { status,events} = useAppSelector(selectMemberEvent)
     const {news,status:news_status} = useAppSelector(selectMemberNews)
-    const { status:meeting_status,meetings } =useAppSelector(selectMeetings) 
+    const { status:meeting_status,meetings,message:meeting_message } =useAppSelector(selectMeetings) 
     // const [images,setImages] = useState([])
     const {status:pub_status,publication} = useAppSelector(selectmemberPublication)
     const {notify} = useToast()
@@ -72,6 +72,10 @@ export default function Home(props){
       }
       if(meeting_status=='error'){
         notify('Some Error Occured','error')
+        if(meeting_message==='overdue_payment'){
+        notify('You have out standing payment in your account','error')
+          route.push('/members/dues')
+        }
       }
     },[meeting_status])
 

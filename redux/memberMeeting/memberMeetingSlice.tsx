@@ -37,9 +37,11 @@ const MeetingSlice =createSlice({
             state.status='success'
             state.meetings=action.payload
         })
-        addCase(getMeetings.rejected,(state,action)=>{
+        addCase(getMeetings.rejected,(state,action:any)=>{
             state.status='error'
-            console.log({'error':action.payload})
+            if(action.payload?.response?.data?.message){
+                state.message ='overdue_payment'
+            }
         })
 
         addCase(registerForMeeting.pending,(state,action)=>{
