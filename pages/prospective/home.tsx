@@ -114,7 +114,7 @@ const FormTwo = ({setStep}:{setStep:any})=>{
                                     
                                     {
                                         field.preview?
-                                            <a style={{'textDecoration':'underline','color':'#2e3715','cursor':'pointer'}} onClick={e=>{
+                                            <a style={{'textDecoration':'underline','color':'#015595','cursor':'pointer'}} onClick={e=>{
                                                 window.open(field.preview,'_blank')
                                             }}>view current upload</a>
                                     :''
