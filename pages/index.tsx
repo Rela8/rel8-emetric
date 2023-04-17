@@ -11,7 +11,7 @@ import HeroSection from "../components/HeroSection"
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from '../styles/Home.module.css'
 import Navbar from "../components/Navbar"
-import Logo from '../images/logo.svg'
+import Logo from '../images/logo.png'
 
 import Footer from "../components/Footer"
 import GreenButton from "../components/Buttonn"
@@ -75,11 +75,9 @@ const Login =  () =>{
 
 //   },[status])
     return(
-      <Grid className={styles.loginBg}  style={{'height':'100vh'}}  >
-   
-      <br/>
+      <Grid className={styles.loginBg}>
       
-      <Grid item md={12} className={styles.card} sm={10}  style={{margin:'0 auto','maxWidth':'450px'}} >
+   <div className={styles.card}>
       <div style={{'width':'80px','margin':'0 auto'}}>
          <img src={Logo.src} style={{'width':'100%','height':'100%'}}/>
      </div>
@@ -97,7 +95,9 @@ const Login =  () =>{
               InputProps={{
               
                   startAdornment:(
+                    <>
                       <Person color='disabled'  fontSize={'medium'}/>
+                    </>
                   )
               }}
               {...register("email")}
@@ -148,18 +148,18 @@ const Login =  () =>{
                   }}
                   >
                   {/* <Checkbox/> */}
-                  Activate Account</Typography>
+                  Register</Typography>
               </Grid>
           </Grid>
           <SubmitButton  text={status==="loading"?"Loading":'Login'} radius='10px'
-         textColor='white' paddingY={1} paddingX={2} bg='#2e3715'
+         textColor='white' paddingY={1} paddingX={2} bg='#521e6a'
          
          />
          </form>
           {/* <GreenButton text='Login' /> */}
           {/* <Button variant='contained' size='large' className={styles.button}>Login</Button> */}
-      </Grid>
-      <br/>
+      </div>
+      
       </Grid>
     )
 }

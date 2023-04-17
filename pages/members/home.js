@@ -28,6 +28,8 @@ import { selectmemberPublication } from "../../redux/memberPublication/memberPub
 import { useRouter } from "next/router";
 import { selectMeetings } from "../../redux/memberMeeting/memberMeetingSlice";
 import { getMeetings, registerForMeeting } from "../../redux/memberMeeting/memberMeetingApi";
+import { useQuery } from "react-query";
+import { getImagesForLayout } from "../../redux/gallery/galleryApi";
 
 
 export default function Home(props){
@@ -35,24 +37,27 @@ export default function Home(props){
     const dispatch = useAppDispatch()
     const { status,events} = useAppSelector(selectMemberEvent)
     const {news,status:news_status} = useAppSelector(selectMemberNews)
-    const { status:meeting_status,meetings } =useAppSelector(selectMeetings) 
-    const [images,setImages] = useState([])
+    const { status:meeting_status,meetings,message:meeting_message } =useAppSelector(selectMeetings) 
+    // const [images,setImages] = useState([])
     const {status:pub_status,publication} = useAppSelector(selectmemberPublication)
     const {notify} = useToast()
     const [isLoading,setisLoading]= useState(false)
 
-    const getmage =async () =>{
+  //   const getmage =async () =>{
 
-      const resp  = await axios.get('/tenant/extras/gallery_version2/')
-      setImages(resp.data.data.data)
+  //     const resp  = await axios.get('/tenant/extras/gallery_version2/')
+  //     setImages(resp.data.data.data)
 
-  }
+  // }
 
+
+    const {data:images} = useQuery('images_preview',getImagesForLayout,{
+      'refetchOnWindowFocus':false
+    })
 
     useEffect(()=>{
       dispatch(getMembersEvent({}))
       dispatch(getMeetings({}))
-      getmage()
       dispatch(getMemberNews({}))
       dispatch(getMemberPublication({}))
     },[])
@@ -67,10 +72,14 @@ export default function Home(props){
       }
       if(meeting_status=='error'){
         notify('Some Error Occured','error')
+        if(meeting_message==='overdue_payment'){
+        notify('You have out standing payment in your account','error')
+          route.push('/members/dues')
+        }
       }
     },[meeting_status])
 
-   
+    console.log({images})
  
     return(
         <DashboardLayout>
@@ -139,7 +148,7 @@ export default function Home(props){
 
       <button className="not_main" onClick={()=>{
         localStorage.setItem('meeting_detail',JSON.stringify(data))
-        route.push('/members/meeting_details/')
+        route.push(`/members/meetings/${data.id}/`)
       }}>
         View
       </button>
@@ -205,7 +214,7 @@ route.push('/members/event_detail/')
     <p>
       {pub.paragraphs.length!=0?pub.paragraphs[0].paragragh.slice(0,100):''}..
     </p>
-    <a href="#"style={{'color':'#2e3715'}}
+    <a href="#"style={{'color':'#521e6a'}}
       onClick={()=>{
         localStorage.setItem('publication_detail',JSON.stringify(pub))
         route.push('/members/publicationDetail')
@@ -240,9 +249,9 @@ route.push('/members/event_detail/')
               <h2>Gallery</h2>
           <div style={{'display':'flex','flexWrap':'wrap','gap':'10px'}}>
           {
-          images.map((img,index)=>(
+          images?.map((img,index)=>(
             <img className="sideImages" key={index} 
-            src={  img.images.length!=0?img.images[0].image:''}/>
+            src={  images.length!=0?img.images[0].image:''}/>
 
           ))
           }

@@ -5,14 +5,26 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import setupInterceptors from "../helpers/setUpInterceptor"
 import NextNProgress from 'nextjs-progressbar';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
 
+const queryClient = new QueryClient()
 function MyApp({ Component, pageProps }) {
-  return <Provider store={store}>
-    <NextNProgress color={'#2e3715'} />
+  return (
+    <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+    <NextNProgress color={'#521e6a'} />
     <ToastContainer />
 
     <Component {...pageProps} />
     </Provider>
+    </QueryClientProvider>
+  )
 }
 
 export default MyApp

@@ -19,6 +19,7 @@ import Box from '@mui/material/Box';
 import Profile from '../../components/Profile/Profile'
 import axios from '../../helpers/axios'
 import { MemberType } from '../../redux/members/membersApi'
+import CustomBtn from '../../components/CustomBtn/Button'
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -83,7 +84,7 @@ const Dues:NextPage = ()=>{
             //         <p>
             //               {
             //                 tableProps.row.original.is_overdue?
-            //                 <CheckIcon style={{'color':'#2e3715'}}/>
+            //                 <CheckIcon style={{'color':'#521e6a'}}/>
             //                 :
             //                 <PendingIcon style={{'color':'yellow'}}/>
             //               }
@@ -107,7 +108,7 @@ const Dues:NextPage = ()=>{
             //         <p>
             //               {
             //                 tableProps.row.original.is_paid?
-            //                 <CheckIcon style={{'color':'#2e3715'}}/>
+            //                 <CheckIcon style={{'color':'#521e6a'}}/>
             //                 :
             //                 <PendingIcon style={{'color':'yellow'}}/>
             //               }
@@ -118,10 +119,14 @@ const Dues:NextPage = ()=>{
                 Header:'Action',
                 accessor:'is_paid',
                 Cell:(tableProps:any)=>(
-                    <button onClick={()=>{
+                    <div>
+                      {
+                       !tableProps.row.original.is_paid?
+                      <CustomBtn onClick={e=>{
                         // tableProps.row.original.id
                         // notify('Please')
-                        // dispatch(payDuesApi(tableProps.row.original.id))
+                        e.preventDefault()
+                        dispatch(payDuesApi(tableProps.row.original.id))
                       
                     }}>
                       {/* {
@@ -129,7 +134,21 @@ const Dues:NextPage = ()=>{
                         'Pay(Coming soon!)':'view receipt'
                       } */}
                       Pay
-                    </button>
+                    </CustomBtn>
+
+                    :
+                    <CustomBtn onClick={e=>{
+                      e.preventDefault()
+                      notify('we are processing it','success')
+                  }}>
+                    {/* {
+                      tableProps.row.original.is_paid ===true?
+                      'Pay(Coming soon!)':'view receipt'
+                    } */}
+                    view receipt
+                  </CustomBtn>
+                      }
+                    </div>
                 )
             }
         ]
@@ -146,7 +165,6 @@ const Dues:NextPage = ()=>{
             dispatch(setMemberDuesStatus('idle'))
         }
         if(status == 'success'){
-            notify(message,'success')
             dispatch(setMemberDuesStatus('idle'))
 
         }
@@ -160,7 +178,7 @@ const Dues:NextPage = ()=>{
             }
           <div style={{'margin':'1rem auto','maxWidth':'800px','display':'block'}}>
 
-                <div style={{'display':'inline-block','padding':'1.4rem','borderRadius':'10px','color':'white','backgroundColor':'#2e3715'}}>
+                <div style={{'display':'inline-block','padding':'1.4rem','borderRadius':'10px','color':'white','backgroundColor':'#521e6a'}}>
                     <p><strong>Outstanding</strong>: {due_break_down.outstanding}</p>
                     <p><strong>Paid</strong>: {due_break_down.total_paid}</p>
                 </div>
