@@ -214,7 +214,7 @@ route.push('/members/event_detail/')
     <p>
       {pub.paragraphs.length!=0?pub.paragraphs[0].paragragh.slice(0,100):''}..
     </p>
-    <a href="#"style={{'color':'#015595'}}
+    <a href="#"style={{'color':'#521e6a'}}
       onClick={()=>{
         localStorage.setItem('publication_detail',JSON.stringify(pub))
         route.push('/members/publicationDetail')

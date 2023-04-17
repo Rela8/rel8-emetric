@@ -6,7 +6,7 @@ export const ProspectiveSideBarContainer = styled.div`
     /* border: 1px solid red; */
     max-width: 250px;
     height: 100vh;
-    background-color: #015595;
+    background-color: #521e6a;
 
     .nav_logo_propective{
         width: 100%;
@@ -18,7 +18,7 @@ export const ProspectiveSideBarContainer = styled.div`
     }
 
 .ProspectiveSideBarContainer__body{
-    background-color: #015595;
+    background-color: #521e6a;
     list-style-type: none;
     li a{
         padding: 1rem 1.4rem;
@@ -31,7 +31,7 @@ export const ProspectiveSideBarContainer = styled.div`
 
         &:hover{
             background-color: white;
-            color: #015595;
+            color: #521e6a;
         }
     }
 }

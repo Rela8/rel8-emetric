@@ -41,7 +41,7 @@ export default function EventCard (props:Prop){
                             localStorage.setItem('event_detail',JSON.stringify(props.data))
                             route.push('/members/event_detail/')
                         }}
-                textColor='white' paddingY={1} paddingX={2} bg='#015595'/>
+                textColor='white' paddingY={1} paddingX={2} bg='#521e6a'/>
                 </Grid>
             </Grid>
         </Grid>

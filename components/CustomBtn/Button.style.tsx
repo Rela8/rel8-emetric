@@ -18,9 +18,9 @@ width: 100%;
 ${(prop)=>{
     let style;
     if(prop.styleType==='pry'){
-      style = 'background-color:#015595;color: whitesmoke;font-weight: 600;padding: 1rem 1rem;  '
+      style = 'background-color:#521e6a;color: whitesmoke;font-weight: 600;padding: 1rem 1rem;  '
     }else{
-      style = 'color:#015595;font-weight: 600;border:1px solid  #015595;background-color:white;'
+      style = 'color:#521e6a;font-weight: 600;border:1px solid  #521e6a;background-color:white;'
     }
     return style
   }};

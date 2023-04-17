@@ -124,7 +124,7 @@ const Page:NextPage =()=>{
                     <Typography className='text' variant='subtitle2'
                     //  color='grey'
                      >
-                      Already have an account?<span style={{'color':'#015595','cursor':'pointer'}} onClick={e=>{
+                      Already have an account?<span style={{'color':'#521e6a','cursor':'pointer'}} onClick={e=>{
                         router.push('/prospective/')
                       }}>{' '}Login</span>
                     </Typography>

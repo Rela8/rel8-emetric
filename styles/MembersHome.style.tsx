@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 
-/* light blue - #015595
+/* light blue - #521e6a
 
-thick blue - #015595
+thick blue - #521e6a
 */
 export const HomeLayout = styled.div`
     /* margin: 0 auto; */
@@ -18,7 +18,7 @@ export const HomeLayout = styled.div`
 `
 
 export const MeetingHeader = styled.div`
-    background-color: #01559590;
+    background-color: #521e6a90;
     padding: 1rem;
     border-radius: 20px;
     display: flex;
@@ -60,7 +60,7 @@ flex-direction: column;
         
     }
 p{  
-    color:#015595 ;
+    color:#521e6a ;
 }
 `
 
@@ -80,7 +80,7 @@ export const GalleryEventGrid = styled.div`
 
  }
  .galleryContainer p{
-    color: #015595;
+    color: #521e6a;
  }
  .galleryContainer h2{
     position: absolute;
@@ -146,11 +146,11 @@ width: 100%;
         cursor: pointer;
     }
     button.not_main{
-        border: 1px solid #015595;
-        color:  #015595;
+        border: 1px solid #521e6a;
+        color:  #521e6a;
     }
     button.main{
-        background-color: #015595;
+        background-color: #521e6a;
         color: white;
     }
 `
